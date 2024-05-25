@@ -55,6 +55,13 @@ const Navbar = () => {
           >
             <IoIosSearch />
           </div>
+          <div>
+            <a href="/register">
+              <button className="bg-black text-white px-4 py-2 rounded-lg">
+                Sign In
+              </button>
+            </a>
+          </div>
           <div className="flex items-center text-sm">
             <a href="" className="text-3xl">
               <CiHeart />
