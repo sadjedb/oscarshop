@@ -1,7 +1,50 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import heroimage1 from "../../assets/Home/Hero/heroimage1.jpg";
+import heroimage2 from "../../assets/Home/Hero/heroimage2.jpg";
+import heroimage3 from "../../assets/Home/Hero/heroimage3.jpg";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 const Hero = () => {
-  return <div>Hero</div>;
+  const images = [heroimage1, heroimage2, heroimage3];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  return (
+    <div className="flex w-full h-[75%] items-center py-[20px] relative overflow-hidden">
+      {images.map((image, index) => (
+        <img
+          key={index}
+          src={image.src}
+          alt="Hero"
+          className={`absolute w-full h-full transition-all duration-700 ease-out  ${
+            index === currentImageIndex ? "opacity-100" : " opacity-100"
+          }`}
+          style={{
+            transform: `translateX(${(index - currentImageIndex) * 100}%)`,
+          }}
+        />
+      ))}
+      <div className="absolute flex justify-between px-5 w-full text-2xl text-white z-10">
+        <MdArrowBackIos className="cursor-pointer" onClick={handlePrevImage} />
+        <MdArrowForwardIos
+          className="cursor-pointer"
+          onClick={handleNextImage}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Hero;

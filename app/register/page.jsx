@@ -59,7 +59,7 @@ const page = () => {
                 placeholder="Password"
                 className="bg-[#f5f5f5] h-[40px] rounded-lg w-[335px] flex p-4 font-Roboto text-opacity-30 text-black pl-14"
               />
-              <FaLock className="absolute text-xl flex items-center justify-center top-[192px] text-opacity-30 left-4 text-black   " />
+              <FaLock className="absolute text-xl flex items-center justify-center top-[200px] text-opacity-30 left-4 text-black   " />
               <input
                 onChange={handleChange}
                 value={creds.confirmPassword}

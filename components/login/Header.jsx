@@ -1,13 +1,32 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { MdClose } from "react-icons/md";
 
-const page = () => {
+const Page = () => {
+  const [closeHeader, setCloseHeader] = useState(true);
+
+  function handleClick() {
+    setCloseHeader((prev) => !prev);
+  }
+
   return (
-    <div className="h-[30px] border-b-[1px]  border-black flex justify-center items-center ">
-      <h1 className=" font-Roboto  ">
-        Welcome to the best online clothing store in Algeria !
-      </h1>
+    <div>
+      {closeHeader ? (
+        <div className="h-[50px] border-b-[1px] border-black flex justify-center items-center transition-all duration-500 ease-in-out">
+          <div>
+            <h1 className="font-Roboto flex items-center px-[600px]">
+              Welcome to the best online clothing store in Algeria!
+            </h1>
+          </div>
+          <div className="cursor-pointer" onClick={handleClick}>
+            <MdClose />
+          </div>
+        </div>
+      ) : (
+        <div className="h-0 transition-all duration-500 ease-in-out"></div>
+      )}
     </div>
   );
 };
 
-export default page;
+export default Page;

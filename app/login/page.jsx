@@ -51,7 +51,7 @@ const Page = () => {
                   placeholder="Password"
                   className="bg-[#f5f5f5] h-[40px] rounded-lg w-full md:w-[335px] flex p-4 font-Roboto text-opacity-30 text-black pl-14"
                 />
-                <FaLock className="md:absolute hidden text-xl md:flex items-center justify-center top-[147px] md:top-[10px] text-opacity-30 left-4 text-black" />
+                <FaLock className="md:absolute hidden text-xl md:flex items-center justify-center top-[150px] md:top-[10px] text-opacity-30 left-4 text-black" />
               </div>
               <div className="pt-4">
                 <button className="bg-black h-[45px] rounded-lg w-full md:w-[335px] flex p-4 font-Roboto text-opacity-30 text-black justify-center items-center pt-5">

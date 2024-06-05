@@ -9,7 +9,6 @@ const page = () => {
   return (
     <div className="w-full h-screen ">
       <div className="w-full h-screen">
-        Home Page
         <Hero />
         <Categories />
         <OnsSale />

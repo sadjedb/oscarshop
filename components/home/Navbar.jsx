@@ -12,6 +12,7 @@ const Navbar = () => {
   });
   console.log(navBarData);
   const [searchBar, setSearchBar] = useState(false);
+
   function handleSearchBar() {
     setSearchBar((prev) => !prev);
   }
@@ -37,28 +38,32 @@ const Navbar = () => {
           <h1>Full Outfits</h1>
         </div>
         {/* Search Bar */}
-        {searchBar && (
-          <div className="flex items-center justify-center w-[400px] md:w-[50%]  h-[40px] relative">
-            <input
-              type="text"
-              value={navBarData.searchValue}
-              onChange={handleSearchInputChange}
-              placeholder="Search"
-              className="flex-grow h-full px-4 rounded-lg border border-black focus:outline-none"
-            />
-          </div>
-        )}
+        <div
+          className={`flex items-center justify-center h-[40px] relative transition-all duration-500 ease-out ${
+            searchBar
+              ? "w-[700px] opacity-100 items-center justify-center"
+              : "w-0 opacity-0 overflow-hidden items-center justify-center"
+          }`}
+        >
+          <input
+            type="text"
+            value={navBarData.searchValue}
+            onChange={handleSearchInputChange}
+            placeholder="Search"
+            className="flex-grow h-full px-4 rounded-lg border border-black focus:outline-none"
+          />
+        </div>
         <div className="flex items-center gap-8">
           <div
-            className="flex items-center  text-3xl"
+            className="flex items-center text-3xl cursor-pointer"
             onClick={handleSearchBar}
           >
             <IoIosSearch />
           </div>
           <div>
-            <a href="/register">
+            <a href="/login">
               <button className="bg-black text-white px-4 py-2 rounded-lg">
-                Sign In
+                Login
               </button>
             </a>
           </div>
