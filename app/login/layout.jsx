@@ -1,4 +1,4 @@
-import Footer from "@/components/login/Footer";
+import Footer from "@/components/Footer";
 import Header from "@/components/login/Header";
 
 export default function homeLayout({ children }) {

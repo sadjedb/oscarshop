@@ -13,8 +13,13 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        PoetsenOne: ["Poetsen One"],
-        Roboto: ["Roboto"],
+        poetsenOne: ["Poetsen One"],
+        roboto: ["Roboto"],
+        montserrat: ["Montserrat"],
+      },
+      fontWeight: {
+        "montserrat-regular": 400,
+        "montserrat-bold": 900,
       },
     },
   },

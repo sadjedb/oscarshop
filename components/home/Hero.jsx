@@ -6,7 +6,11 @@ import heroimage3 from "../../assets/Home/Hero/heroimage3.jpg";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 const Hero = () => {
-  const images = [heroimage1, heroimage2, heroimage3];
+  const images = [
+    { image: heroimage1 },
+    { image: heroimage2 },
+    { image: heroimage3 },
+  ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const handlePrevImage = () => {
@@ -22,26 +26,34 @@ const Hero = () => {
   };
 
   return (
-    <div className="flex w-full h-[75%] items-center py-[20px] relative overflow-hidden">
-      {images.map((image, index) => (
-        <img
-          key={index}
-          src={image.src}
-          alt="Hero"
-          className={`absolute w-full h-full transition-all duration-700 ease-out  ${
-            index === currentImageIndex ? "opacity-100" : " opacity-100"
-          }`}
-          style={{
-            transform: `translateX(${(index - currentImageIndex) * 100}%)`,
-          }}
-        />
-      ))}
-      <div className="absolute flex justify-between px-5 w-full text-2xl text-white z-10">
-        <MdArrowBackIos className="cursor-pointer" onClick={handlePrevImage} />
-        <MdArrowForwardIos
-          className="cursor-pointer"
-          onClick={handleNextImage}
-        />
+    <div className="w-full h-[750px] py-8">
+      <div
+        className="flex w-full  h-full items-center py-[20px] relative overflow-hidden"
+        style={{ userSelect: "none" }}
+      >
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image.image.src}
+            alt="Hero"
+            className={`absolute w-full h-full transition-all duration-700 ease-out  ${
+              index === currentImageIndex ? "opacity-100" : " opacity-100"
+            }`}
+            style={{
+              transform: `translateX(${(index - currentImageIndex) * 100}%)`,
+            }}
+          />
+        ))}
+        <div className="absolute flex justify-between px-5 w-full text-2xl text-white z-10">
+          <MdArrowBackIos
+            className="cursor-pointer"
+            onClick={handlePrevImage}
+          />
+          <MdArrowForwardIos
+            className="cursor-pointer"
+            onClick={handleNextImage}
+          />
+        </div>
       </div>
     </div>
   );

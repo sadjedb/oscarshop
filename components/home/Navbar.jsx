@@ -31,17 +31,37 @@ const Navbar = () => {
           </div>
         )}
         <div className="flex-grow md:flex hidden gap-10 font-Roboto font-semibold text-black opacity-75 justify-center items-center">
-          <h1>New In</h1>
-          <h1>Free Delivery</h1>
-          <h1>Sales</h1>
-          <h1>Oscar's brand</h1>
-          <h1>Full Outfits</h1>
+          <a href="./home/new-in">
+            <h1 className="hover:bg-black hover:text-white py-2 px-2 hover:border-[1px] border-black rounded-xl transition-all duration-500 font-montserrat  ">
+              New In
+            </h1>
+          </a>
+          <a href="./home/free-delivery">
+            <h1 className="hover:bg-black hover:text-white py-2 px-2 hover:border-[1px] border-black rounded-xl transition-all duration-300 font-montserrat  ">
+              Free Delivery
+            </h1>
+          </a>
+          <a href="./home/sales">
+            <h1 className="hover:bg-black hover:text-white py-2 px-2 hover:border-[1px] border-black rounded-xl transition-all duration-300 font-montserrat  ">
+              Sales
+            </h1>
+          </a>
+          <a href="./home/oscar-brand">
+            <h1 className="hover:bg-black hover:text-white py-2 px-2 hover:border-[1px] border-black rounded-xl transition-all duration-300 font-montserrat  ">
+              Oscar's brand
+            </h1>
+          </a>
+          <a href="./home/fulloutfit">
+            <h1 className="hover:bg-black hover:text-white py-2 px-2 hover:border-[1px] border-black rounded-xl transition-all duration-300 font-montserrat  ">
+              Full Outfits
+            </h1>
+          </a>
         </div>
         {/* Search Bar */}
         <div
-          className={`flex items-center justify-center h-[40px] relative transition-all duration-500 ease-out ${
+          className={`flex items-center justify-center  relative transition-all duration-500 ease-out ${
             searchBar
-              ? "w-[700px] opacity-100 items-center justify-center"
+              ? "w-[700px] opacity-100 items-center justify-center "
               : "w-0 opacity-0 overflow-hidden items-center justify-center"
           }`}
         >
@@ -50,7 +70,7 @@ const Navbar = () => {
             value={navBarData.searchValue}
             onChange={handleSearchInputChange}
             placeholder="Search"
-            className="flex-grow h-full px-4 rounded-lg border border-black focus:outline-none"
+            className="flex-grow  h-[40px]  px-4 rounded-lg border border-black focus:outline-none"
           />
         </div>
         <div className="flex items-center gap-8">

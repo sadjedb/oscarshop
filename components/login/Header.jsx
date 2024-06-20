@@ -14,7 +14,7 @@ const Page = () => {
       {closeHeader ? (
         <div className="h-[50px] border-b-[1px] border-black flex justify-center items-center transition-all duration-500 ease-in-out">
           <div>
-            <h1 className="font-Roboto flex items-center px-[600px]">
+            <h1 className="font-Roboto flex items-center">
               Welcome to the best online clothing store in Algeria!
             </h1>
           </div>
