@@ -94,7 +94,7 @@ const Navbar = () => {
             <p>({navBarData.wishListNb})</p>
           </div>
           <div className="flex items-center text-sm">
-            <a href="" className="text-3xl">
+            <a href="/home/cart" className="text-3xl">
               <CiShoppingCart />
             </a>
             <p>({navBarData.cartProductNb})</p>
