@@ -1,11 +1,25 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaPlus, FaStar } from "react-icons/fa";
 import { IoShareSocialOutline } from "react-icons/io5";
+import { Router, useRouter } from "next/router";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 const Page = () => {
+  const [buttonText, setButtonText] = useState("Share");
+  const handleCopyPathname = async () => {
+    try {
+      const fullUrl = window.location.href;
+      await navigator.clipboard.writeText(fullUrl);
+      setButtonText("Copied!");
+      setTimeout(() => {
+        setButtonText("Share");
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
   const [selectedImage, setSelectedImage] = useState({
     image1: "https://uptownoire.com/wp-content/uploads/2024/06/img_5575.jpeg",
     image2: "https://uptownoire.com/wp-content/uploads/2024/06/img_5576.jpeg",
@@ -62,7 +76,25 @@ const Page = () => {
   const handleMouseLeave = () => {
     imgRef.current.style.transformOrigin = "center center";
   };
-
+  const [selectValue, setSelectValue] = useState("");
+  const handleClickSelectedValue = (e) => {
+    setSelectValue(e.target.getAttribute("value"));
+    console.log(e.target.getAttribute("value"));
+    const siblings = e.target.parentNode.children;
+    for (let i = 0; i < siblings.length; i++) {
+      if (siblings[i] !== e.target) {
+        siblings[i].style.backgroundColor = "#000";
+        siblings[i].style.color = "#fff";
+        siblings[i].style.border = "2px solid #000";
+        siblings[i].style.cursor = "pointer";
+      } else {
+        siblings[i].style.backgroundColor = "#fff";
+        siblings[i].style.color = "#000";
+        siblings[i].style.border = "2px solid #000";
+        siblings[i].style.cursor = "default";
+      }
+    }
+  };
   return (
     <div className="w-full min-h-screen flex justify-center font-jost">
       <div className="flex w-full md:w-[47%] justify-center py-10 md:py-20 border-r-[1px] border-black">
@@ -135,23 +167,48 @@ const Page = () => {
         <div className="flex flex-col w-full">
           <div className="flex text-lg md:text-xl items-center">
             <h1>Size : </h1>
-            <select name="size" id="size" className="ml-2">
-              <option value="XS" className="hover:bg-red-500">
+            <div className="ml-2 flex gap-8">
+              <div
+                className=" w-[50px] flex justify-center items-center bg-black text-white  h-[50px] cursor-pointer"
+                onClick={handleClickSelectedValue}
+                name="XS"
+                value="XS"
+              >
                 XS
-              </option>
-              <option value="S" className="hover:bg-red-500">
+              </div>
+              <div
+                className=" w-[50px] flex justify-center items-center bg-black text-white  h-[50px] cursor-pointer"
+                onClick={handleClickSelectedValue}
+                name="S"
+                value="S"
+              >
                 S
-              </option>
-              <option value="L" className="hover:bg-red-500">
+              </div>
+              <div
+                className=" w-[50px] flex justify-center items-center bg-black text-white  h-[50px] cursor-pointer"
+                onClick={handleClickSelectedValue}
+                name="L"
+                value="L"
+              >
                 L
-              </option>
-              <option value="XL" className="hover:bg-red-500">
+              </div>
+              <div
+                className=" w-[50px] flex justify-center items-center bg-black text-white  h-[50px] cursor-pointer"
+                onClick={handleClickSelectedValue}
+                name="XL"
+                value="XL"
+              >
                 XL
-              </option>
-              <option value="XXL" className="hover:bg-red-500">
+              </div>
+              <div
+                className=" w-[50px] flex justify-center items-center bg-black text-white  h-[50px] cursor-pointer"
+                onClick={handleClickSelectedValue}
+                name="XXL"
+                value="XXL"
+              >
                 XXL
-              </option>
-            </select>
+              </div>
+            </div>
           </div>
           <div className="py-8 md:py-12">
             <div className="py-2">
@@ -171,9 +228,12 @@ const Page = () => {
               <CiHeart />
               <span className="p-1">Wishlist</span>
             </button>
-            <button className="flex justify-center items-center bg-black hover:bg-white hover:text-black border-2 border-black text-white py-2 rounded-lg px-4 md:px-7 transition-all duration-700">
+            <button
+              className="flex justify-center items-center bg-black hover:bg-white hover:text-black border-2 border-black text-white py-2 rounded-lg px-4 md:px-7 transition-all duration-700"
+              onClick={handleCopyPathname}
+            >
               <IoShareSocialOutline />
-              <span className="p-1">Share</span>
+              <span className="p-1">{buttonText}</span>
             </button>
           </div>
         </div>
