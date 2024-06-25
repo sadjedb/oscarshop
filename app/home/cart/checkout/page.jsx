@@ -32,7 +32,42 @@ const Page = () => {
     },
   ]);
 
+  const [couponCode, setCouponCode] = useState({
+    couponCode: "",
+  });
+
+  const [discount, setDiscount] = useState(0);
+  const [totalPriceAfterDiscount, setTotalPriceAfterDiscount] = useState(0);
+
   const [selectedValue, setSelectedValue] = useState("CashOnDelivery");
+
+  const shippingPrice = 900;
+
+  const totalPrice = cartProducts.reduce((total, product) => {
+    return total + product.price * product.quantity;
+  }, 0);
+
+  function handleCouponInputChange(event) {
+    const { value } = event.target;
+    setCouponCode((prevData) => ({ ...prevData, couponCode: value }));
+  }
+
+  const handleApplyCoupon = () => {
+    let priceAfterDiscount = 0;
+    let discountApplied = 0;
+
+    if (couponCode.couponCode === "OSCAR2021") {
+      console.log("Coupon Code is valid");
+      discountApplied = totalPrice * 0.19;
+      priceAfterDiscount = totalPrice - discountApplied + shippingPrice;
+    } else {
+      console.log("Coupon Code is not valid");
+      priceAfterDiscount = totalPrice + shippingPrice;
+    }
+
+    setDiscount(discountApplied);
+    setTotalPriceAfterDiscount(priceAfterDiscount);
+  };
 
   const handleRadioChange = (value) => {
     setSelectedValue(value);
@@ -139,7 +174,6 @@ const Page = () => {
                 <label htmlFor="Edhahabia">Edhahabia</label>
               </div>
             </div>
-            {/* Payment Method form */}
             {selectedValue === "Edhahabia" && (
               <div>
                 <div className="w-full">
@@ -189,26 +223,48 @@ const Page = () => {
                         className="w-[120px] object-cover pr-4 pl-4"
                       />
                     </div>
-                    <div className="flex-col flex justify-between">
+                    <div className="flex-col flex justify-between ">
                       <p>Product Name : {product.name}</p>
                       <p>Product Price : {product.price}</p>
                       <p>Product Quantity :{product.quantity}</p>
                     </div>
                   </div>
                 ))}
-                <div className="flex flex-col pb-4 justify-between pl-4">
-                  <div className="py-[2px]">Subtotal : </div>
-                  <div className="py-[2px]">Discount : </div>
+                <div className="flex flex-col pb-4 justify-between pl-4 text-lg ">
+                  <div className="py-[2px]">Subtotal : {totalPrice} DZD</div>
+                  <div className="py-[2px]">Discount : {discount} DZD </div>
                   <div className="border-b-[1px] pb-4 w-full py-[2px]">
-                    Shipping :{" "}
+                    Shipping : 900 DZD
                   </div>
-                  <div className="pt-4">Total :</div>
+                  <div className="flex gap-6 justify-center items-center pt-2">
+                    <input
+                      type="text"
+                      name="coupon"
+                      onChange={handleCouponInputChange}
+                      className="flex border-[1px] border-black rounded-xl px-3 text-sm py-2"
+                    />
+                    <button
+                      className="bg-black text-white py-2 rounded-lg px-7"
+                      onClick={handleApplyCoupon}
+                    >
+                      Apply Coupon
+                    </button>
+                  </div>
+                  <div className="pt-4 text-xl font-semibold">
+                    Total :{" "}
+                    {totalPriceAfterDiscount === 0
+                      ? totalPrice
+                      : totalPriceAfterDiscount}{" "}
+                    DZD
+                  </div>
                 </div>
               </div>
               <div className="pl-4 justify-center flex">
-                <button className="bg-black text-white py-2 rounded-lg px-12">
-                  Checkout
-                </button>
+                <a href="./checkout/finalStep">
+                  <button className="bg-black text-white py-2 rounded-lg px-12">
+                    Checkout
+                  </button>
+                </a>
               </div>
             </div>
           </div>

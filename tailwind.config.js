@@ -1,3 +1,5 @@
+const { Jost } = require("next/font/google");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -16,6 +18,7 @@ module.exports = {
         poetsenOne: ["Poetsen One"],
         roboto: ["Roboto"],
         montserrat: ["Montserrat"],
+        jost: ["Jost"],
       },
       fontWeight: {
         "montserrat-regular": 400,

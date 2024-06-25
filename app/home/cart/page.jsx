@@ -1,8 +1,8 @@
 "use client";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import React from "react";
 
-export default function Home() {
+const page = () => {
   const [cartProducts, setCartProducts] = useState([
     {
       category: "sweatpants",
@@ -64,87 +64,86 @@ export default function Home() {
   };
 
   return (
-    <div className="flex w-full h-screen flex-col justify-center items-center">
-      <div className="flex w-[60%] h-[100px] justify-between items-center bg-[#F5F5F5]">
-        <div className="flex justify-center items-center px-4 font-montserrat font-semibold ">
-          <p
-            className={`border-[1px] border-black rounded-full px-3 bg-black text-white } `}
-          >
+    <div className="flex w-full min-h-screen flex-col justify-center items-center p-4">
+      <div className="flex w-full lg:w-[60%] h-[100px] justify-between items-center bg-[#F5F5F5] p-4 rounded-lg">
+        <div className="flex justify-center items-center font-montserrat font-semibold">
+          <p className="border-[1px] border-black rounded-full px-3 bg-black text-white">
             1
           </p>
-          <p className="px-3 text-xl"> SHOPPING CART</p>
+          <p className="px-3 text-lg md:text-xl">SHOPPING CART</p>
         </div>
-
-        <div className="flex justify-center items-center px-4 font-montserrat font-semibold">
-          <p className={`border-[1px] border-black rounded-full px-3 }`}>2</p>
-          <p className="px-3 text-xl"> CHECKOUT</p>
+        <div className="flex justify-center items-center font-montserrat font-semibold">
+          <p className="border-[1px] border-black rounded-full px-3">2</p>
+          <p className="px-3 text-lg md:text-xl">CHECKOUT</p>
         </div>
-        <div className="flex justify-center items-center px-4 font-montserrat font-semibold">
-          <p className={`border-[1px] border-black rounded-full px-3 `}>3</p>
-          <p className="px-3 text-xl"> ORDER COMPLETE</p>
+        <div className="flex justify-center items-center font-montserrat font-semibold">
+          <p className="border-[1px] border-black rounded-full px-3">3</p>
+          <p className="px-3 text-lg md:text-xl">ORDER COMPLETE</p>
         </div>
       </div>
-
-      <div className="flex w-[60%] h-full pt-40 flex-col">
-        <div className="flex gap-3 border-b-[1px]">
-          <h1 className="pl-32">PRODUCT</h1>
-          <h1 className="pl-[393px]">PRICE</h1>
-          <h1 className="pl-[54px]">QUANTITY</h1>
-          <h1 className="pl-[40px]">SUBTOTAL</h1>
+      <div className="flex w-full lg:w-[60%] flex-col pt-8 md:pt-20">
+        <div className="flex gap-3 border-b-[1px] p-4">
+          <h1 className="flex-1 text-center">PRODUCT</h1>
+          <h1 className="hidden md:block flex-1 text-center">PRICE</h1>
+          <h1 className="hidden md:block flex-1 text-center">QUANTITY</h1>
+          <h1 className="hidden md:block flex-1 text-center">SUBTOTAL</h1>
         </div>
         {cartProducts.map((product, index) => (
-          <div key={index} className="flex w-[100%] gap-7 py-5 items-center">
+          <div
+            key={index}
+            className="flex flex-col md:flex-row w-full gap-3 py-5 items-center border-b-[1px] p-4"
+          >
             <img
               src={product.image}
               alt={product.name}
-              className="w-[100px] h-[100px]"
+              className="w-[100px] h-[100px] object-cover"
             />
-            <p>{product.description}</p>
-            <p className="pl-[80px] pr-10">{product.price} DZD</p>
-            <p>{product.quantity}</p>
-            <p className="pl-[65px]">{product.price * product.quantity} DZD</p>
-            <div className="text-3xl flex gap-7 mx-auto">
+            <p className="flex-1 text-center md:text-left">
+              {product.description}
+            </p>
+            <p className="flex-1 text-center md:text-left md:flex-none">
+              {product.price} DZD
+            </p>
+            <div className="flex items-center gap-2">
               <button
-                className="border-[1px] rounded-full px-2 items-center justify-center"
+                className="border-[1px] rounded-full px-2"
                 onClick={() => addQuantity(index)}
               >
                 +
               </button>
+              <p>{product.quantity}</p>
               <button
-                className="border-[1px] rounded-full px-3 items-center justify-center"
+                className="border-[1px] rounded-full px-2"
                 onClick={() => minusQuantity(index)}
               >
                 -
               </button>
             </div>
+            <p className="flex-1 text-center md:text-left md:flex-none">
+              {product.price * product.quantity} DZD
+            </p>
           </div>
         ))}
-        <div className="flex p-4">
-          <div className="flex">
+        <div className="flex flex-col md:flex-row justify-between items-center p-4">
+          <div className="flex gap-4">
             <a href="./cart/checkout">
-              <div className="py-4 px-4">
-                <button
-                  type="submit"
-                  className="bg-black text-white px-4 py-2 rounded"
-                >
-                  Proceed to Checkout
-                </button>
-              </div>
+              <button className="bg-black text-white px-4 py-2 rounded">
+                Proceed to Checkout
+              </button>
             </a>
-
             <a href="/">
-              <div className="py-4 px-4">
-                <button className="bg-black text-white px-4 py-2 rounded">
-                  Continue Shopping
-                </button>
-              </div>
+              <button className="bg-black text-white px-4 py-2 rounded">
+                Continue Shopping
+              </button>
             </a>
           </div>
-          <p className="flex justify-center items-center pl-[427px] text-xl font-montserrat font-bold">
+          <p className="text-lg md:text-xl font-montserrat font-bold mt-4 md:mt-0">
             TOTAL PRICE: {totalPrice} DZD
           </p>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default page;

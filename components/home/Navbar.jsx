@@ -82,13 +82,16 @@ const Navbar = () => {
           </div>
           <div>
             <a href="/login">
-              <button className="bg-black text-white px-4 py-2 rounded-lg">
+              <button className="flex justify-center items-center bg-black hover:bg-white hover:text-black border-2 border-black text-white  transition-all duration-700 px-4 py-2 rounded-lg">
                 Login
               </button>
             </a>
           </div>
           <div className="flex items-center text-sm">
-            <a href="" className="text-3xl">
+            <a
+              href=""
+              className="text-3xl hover:text-red-600 transition-all duration-500"
+            >
               <CiHeart />
             </a>
             <p>({navBarData.wishListNb})</p>

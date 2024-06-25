@@ -26,9 +26,9 @@ const Hero = () => {
   };
 
   return (
-    <div className="w-full h-[750px] py-8">
+    <div className="w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[750px] py-4 md:py-8">
       <div
-        className="flex w-full  h-full items-center py-[20px] relative overflow-hidden"
+        className="flex w-full h-full items-center relative overflow-hidden"
         style={{ userSelect: "none" }}
       >
         {images.map((image, index) => (
@@ -36,15 +36,15 @@ const Hero = () => {
             key={index}
             src={image.image.src}
             alt="Hero"
-            className={`absolute w-full h-full transition-all duration-700 ease-out  ${
-              index === currentImageIndex ? "opacity-100" : " opacity-100"
+            className={`absolute w-full h-full object-cover transition-all duration-700 ease-out ${
+              index === currentImageIndex ? "opacity-100" : "opacity-100"
             }`}
             style={{
               transform: `translateX(${(index - currentImageIndex) * 100}%)`,
             }}
           />
         ))}
-        <div className="absolute flex justify-between px-5 w-full text-2xl text-white z-10">
+        <div className="absolute flex justify-between w-full px-4 sm:px-5 text-lg sm:text-2xl text-white z-10">
           <MdArrowBackIos
             className="cursor-pointer"
             onClick={handlePrevImage}
