@@ -38,7 +38,7 @@ const OnsSale = () => {
     <a
       key={sale.name}
       href={`home/${sale.name}`}
-      className="border-[1px] hover:scale-110 transition-all duration-500 rounded-xl shadow-lg hover:shadow-2xl hover:border-black font-montserrat w-full sm:w-[45%] lg:w-[30%] mx-auto"
+      className="border-[1px] sm:hover:border-[1px] hover:scale-110 transition-all duration-500 rounded-xl shadow-lg hover:shadow-2xl hover:border-black font-montserrat w-full sm:w-[45%] lg:w-[30%] mx-auto"
     >
       <div className="bg-[#F5F5F5] w-full h-full">
         <img
