@@ -5,6 +5,7 @@ export default function RootLayout({ children }) {
   return (
     <div lang="en">
       <Header />
+
       {children}
       {/* <Footer /> */}
     </div>
