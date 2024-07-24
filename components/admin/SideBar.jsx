@@ -10,8 +10,13 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { usePathname, useRouter } from "next/navigation";
 
 const SideBar = () => {
+  const inActiveLink =
+    "dahsboard font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg";
+  const activelink =
+    "dahsboard font-roboto font-semibold flex items-center justify-center bg-black hover:bg-white hover:text-black border-2 border-black text-white  transition-all duration-700 px-4 py-2 rounded-lg";
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  console.log(usePathname());
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <aside className="">
       {
@@ -44,50 +49,92 @@ const SideBar = () => {
             </button>
             <div className="flex text-black  flex-col gap-10 px-2">
               <a href="../admin/dashboard" className="">
-                <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
+                <div
+                  className={
+                    pathname.includes("/admin/dashboard")
+                      ? activelink
+                      : inActiveLink
+                  }
+                >
                   <MdDashboard className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Dashboard</span>
                 </div>
               </a>
               <a href="../admin/orders" className="">
-                <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
+                <div
+                  className={
+                    pathname.includes("/admin/orders")
+                      ? activelink
+                      : inActiveLink
+                  }
+                >
                   <BsCashCoin className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Orders</span>
                 </div>
               </a>
               <a href="../admin/products" className="">
-                <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
+                <div
+                  className={
+                    pathname.includes("/admin/products")
+                      ? activelink
+                      : inActiveLink
+                  }
+                >
                   <MdProductionQuantityLimits className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Products</span>
                 </div>
               </a>
               <a href="../admin/profile" className="">
-                <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
+                <div
+                  className={
+                    pathname.includes("/admin/profile")
+                      ? activelink
+                      : inActiveLink
+                  }
+                >
                   <CgProfile className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2"> Profile</span>
                 </div>
               </a>
               <a href="../admin/users" className="">
-                <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
+                <div
+                  className={
+                    pathname.includes("/admin/users")
+                      ? activelink
+                      : inActiveLink
+                  }
+                >
                   <FaUserCog className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Users Management</span>
                 </div>
               </a>
               <a href="../admin/addProduct" className="">
-                <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
+                <div
+                  className={
+                    pathname.includes("/admin/addProduct")
+                      ? activelink
+                      : inActiveLink
+                  }
+                >
                   <IoIosAddCircleOutline className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Add New Product</span>
                 </div>
               </a>
               <a href="../admin/addCategory" className="">
-                <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
+                <div
+                  className={
+                    pathname.includes("/admin/addCategory")
+                      ? activelink
+                      : inActiveLink
+                  }
+                >
                   <IoIosAddCircleOutline className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Add New Category</span>
                 </div>
               </a>
               <div className="w-full flex pt-44">
                 <a href="">
-                  <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
+                  <div className=" font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
                     <FiLogOut className="text-xl text-black hover:text-white" />
                     Disconnect
                   </div>
