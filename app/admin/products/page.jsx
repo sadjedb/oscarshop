@@ -4,7 +4,8 @@ import React from "react";
 const page = () => {
   return (
     <div>
-      <SideBar />
+      <div></div>
+      <div className="bg-blue-300 flex w-full h-screen">products</div>
     </div>
   );
 };

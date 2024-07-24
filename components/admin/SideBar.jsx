@@ -1,19 +1,19 @@
 "use client";
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import { FaUserCog } from "react-icons/fa";
 import { GoSidebarCollapse, GoSidebarExpand } from "react-icons/go";
 import { MdDashboard, MdProductionQuantityLimits } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
-
 import { BsCashCoin } from "react-icons/bs";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { usePathname, useRouter } from "next/navigation";
 
-const SideBar = (props) => {
+const SideBar = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
+  console.log(usePathname());
   return (
-    <div className="flex w-full h-screen flex-col p-4">
+    <aside className="">
       {
         <div className="">
           <div className="">
@@ -43,43 +43,43 @@ const SideBar = (props) => {
               </div>
             </button>
             <div className="flex text-black  flex-col gap-10 px-2">
-              <a href="" className="">
-                <div className="font-roboto font-semibold flex items-center justify-center bg-black hover:bg-white hover:text-black border-2 border-black text-white  transition-all duration-700 px-4 py-2 rounded-lg">
+              <a href="../admin/dashboard" className="">
+                <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
                   <MdDashboard className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Dashboard</span>
                 </div>
               </a>
-              <a href="./admin/orders" className="">
+              <a href="../admin/orders" className="">
                 <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
                   <BsCashCoin className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Orders</span>
                 </div>
               </a>
-              <a href="./admin/products" className="">
+              <a href="../admin/products" className="">
                 <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
                   <MdProductionQuantityLimits className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Products</span>
                 </div>
               </a>
-              <a href="./admin/profile" className="">
+              <a href="../admin/profile" className="">
                 <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
                   <CgProfile className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2"> Profile</span>
                 </div>
               </a>
-              <a href="./admin/users" className="">
+              <a href="../admin/users" className="">
                 <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
                   <FaUserCog className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Users Management</span>
                 </div>
               </a>
-              <a href="./admin/addProduct" className="">
+              <a href="../admin/addProduct" className="">
                 <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
                   <IoIosAddCircleOutline className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Add New Product</span>
                 </div>
               </a>
-              <a href="./admin/addCategory" className="">
+              <a href="../admin/addCategory" className="">
                 <div className="font-roboto font-semibold flex items-center justify-center bg-white hover:bg-black hover:text-white border-2 border-black text-black  transition-all duration-700 px-4 py-2 rounded-lg">
                   <IoIosAddCircleOutline className="text-2xl flex items-center justify-center" />{" "}
                   <span className="pl-2">Add New Category</span>
@@ -97,7 +97,7 @@ const SideBar = (props) => {
           </div>
         </div>
       }
-    </div>
+    </aside>
   );
 };
 

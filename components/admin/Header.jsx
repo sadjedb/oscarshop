@@ -15,10 +15,10 @@ const Page = () => {
         <div className="h-[50px] border-b-[1px] border-black flex justify-center items-center transition-all duration-500 ease-in-out">
           <div>
             <h1 className="font-Roboto flex items-center font-semibold">
-              From here you can manage your store
+              you are loged in as boutefli9a from here you can manage your store
             </h1>
           </div>
-          <div className="cursor-pointer" onClick={handleClick}>
+          <div className="cursor-pointer ml-4" onClick={handleClick}>
             <MdClose />
           </div>
         </div>
