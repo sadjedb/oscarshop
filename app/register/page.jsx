@@ -3,8 +3,8 @@ import { VscAccount } from "react-icons/vsc";
 import React, { useState } from "react";
 import { FaLock } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import { useRouter } from "next/navigation";
 
+import axios from "axios";
 const Page = () => {
   const [creds, setCreds] = useState({
     username: "",
@@ -13,38 +13,28 @@ const Page = () => {
     confirmPassword: "",
   });
 
-  const router = useRouter();
-
   function handleChange(e) {
     setCreds((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function register(e) {
-    e.preventDefault();
-    if (creds.password !== creds.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-    fetch("http://localhost:3001/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: creds.username,
-        email: creds.email,
-        password: creds.password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        router.push("/login");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+  const register = () => {
+    if (
+      creds.username !== "" ||
+      creds.email !== "" ||
+      creds.password !== "" ||
+      creds.confirmPassword !== ""
+    ) {
+      axios({
+        method: "POST",
+        url: "http://localhost:3001/register",
+        data: creds,
+        withCredentials: true,
+      }).then((res) => {
+        console.log(res);
       });
-  }
+    }
+    alert("register");
+  };
 
   return (
     <div className="h-screen w-full flex flex-row justify-center items-center p-16">
