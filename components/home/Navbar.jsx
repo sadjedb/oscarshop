@@ -1,8 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { setIsLoggedIn } from "react";
 import { CiHeart, CiShoppingCart } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 import Logo from "./../../assets/Home/Navbar/Logo.jpg";
+import axios from "axios";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
   const [navBarData, setNavBarData] = useState({
@@ -22,6 +25,28 @@ const Navbar = () => {
     setNavBarData((prevData) => ({ ...prevData, searchValue: value }));
   }
 
+  const [creds, setCreds] = useState("loading");
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const getUser = () => {
+    axios({
+      method: "GET",
+      url: "http://localhost:3001/login",
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log(res.data);
+        setCreds(res.data.username);
+        setIsLoggedIn(true);
+      })
+
+      .catch((err) => console.log(err));
+  };
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  console.log(isLoggedIn);
   return (
     <div className="w-full h-[70px] flex items-center border-b-black border-b-[1px]">
       <div className="flex flex-row w-full justify-between">
@@ -80,13 +105,22 @@ const Navbar = () => {
           >
             <IoIosSearch />
           </div>
-          <div>
-            <a href="/login">
-              <button className="flex justify-center items-center bg-black hover:bg-white hover:text-black border-2 border-black text-white  transition-all duration-700 px-4 py-2 rounded-lg">
-                Login
-              </button>
+          {!isLoggedIn ? (
+            <div>
+              <a href="/login">
+                <button className="flex justify-center items-center bg-black hover:bg-white hover:text-black border-2 border-black text-white  transition-all duration-700 px-4 py-2 rounded-lg">
+                  Login
+                </button>
+              </a>
+            </div>
+          ) : (
+            <a href="/profile">
+              <h1 className="flex text-xl text-black font-roboto justify-center items-center ">
+                <CgProfile className="text-3xl flex items-center justify-center " />
+                <span className="px-[1px]">{creds}</span>
+              </h1>
             </a>
-          </div>
+          )}
           <div className="flex items-center text-sm">
             <a
               href=""

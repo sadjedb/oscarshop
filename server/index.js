@@ -98,6 +98,12 @@ app.get("/login", (req, res) => {
   }
 });
 
+app.get("/logout", (req, res) => {
+  res.clearCookie("token");
+
+  return res.status(200).json({ message: "Logged out" });
+});
+
 app.listen(3001, () => {
   console.log("Server started on port 3001");
 });
