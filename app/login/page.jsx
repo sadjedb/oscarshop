@@ -18,7 +18,8 @@ const Page = () => {
   }
 
   const login = (e) => {
-    e.preventDefault(); // Prevent page refresh on form submission
+    e.preventDefault();
+
     axios({
       method: "POST",
       url: "http://localhost:3001/login",
@@ -26,10 +27,19 @@ const Page = () => {
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res); // Handle successful response
+        if (res.status === 200) {
+          console.log("Login successful");
+          router.push("/home");
+        }
       })
-      .catch((err) => console.log(err)); // Handle error
-    router.push("/home");
+      .catch((err) => {
+        if (err.response && err.response.status === 400) {
+          alert("Login failed: Invalid credentials");
+        } else {
+          alert("An error occurred during login");
+        }
+        console.log(err);
+      });
   };
 
   return (

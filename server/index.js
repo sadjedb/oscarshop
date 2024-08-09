@@ -35,7 +35,7 @@ app.post("/register", async (req, res) => {
     return res.status(400).json({ message: "Passwords do not match" });
   }
   const query =
-    "INSERT INTO user (username, email, password) VALUES (?, ?, ?);";
+    "INSERT INTO user (username, email, password , usertype) VALUES (? , ? , ? , ?);";
   const query2 = "SELECT * FROM user WHERE email = ?;";
   const query3 = "SELECT * FROM user WHERE username = ?;";
 
@@ -68,19 +68,21 @@ app.post("/register", async (req, res) => {
   });
 });
 
+app.post("/changeInfo", async (req, res) => {});
+
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) {
-      console.error("Authentication error:", err); // Log error
+      console.error("Authentication error:", err);
       return res.status(500).json({ message: "Authentication error", err });
     }
     if (!user) {
-      console.log("No user found:", info.message); // Log message
+      console.log("No user found:", info.message);
       return res.status(400).json({ message: "No user found" });
     }
     req.login(user, (err) => {
       if (err) {
-        console.error("Login error:", err); // Log error
+        console.error("Login error:", err);
         return res.status(500).json({ message: "Login error", err });
       }
       return res
@@ -98,10 +100,28 @@ app.get("/login", (req, res) => {
   }
 });
 
-app.get("/logout", (req, res) => {
-  res.clearCookie("token");
+app.post("/logout", (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Logout error", err });
+    }
+    req.session.destroy((err) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ message: "Session destruction error", err });
+      }
+      res.clearCookie("connect.sid", {
+        domain: "localhost",
+        path: "/",
+        httpOnly: true,
+        secure: false,
+        sameSite: "strict",
+      });
 
-  return res.status(200).json({ message: "Logged out" });
+      res.status(200).json({ message: "Successfully logged out" });
+    });
+  });
 });
 
 app.listen(3001, () => {
